@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -23,6 +24,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         EditText e = (EditText)findViewById(R.id.editText1);
         CharSequence moji = e.getText();
+
+        if (moji.length() == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("警告");
+            builder.setMessage("文字が入力されていません。");
+            builder.show();
+            return;
+        }
 
         Toast t = Toast.makeText(this,moji,Toast.LENGTH_SHORT);     //５秒間表示
         t.show();
